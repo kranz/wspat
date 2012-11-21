@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  idpaz: 1
+  cognome: MyString
+  nome: MyString
+  datanas: 2012-11-19
+  gruppo: MyString
+  rh: MyString
+  diagnosi: MyString
+  inibitore: MyString
+  unitabetesda: MyString
+  fattoreresiduo: MyString
+  accessovascolare: MyString
+
+two:
+  idpaz: 1
+  cognome: MyString
+  nome: MyString
+  datanas: 2012-11-19
+  gruppo: MyString
+  rh: MyString
+  diagnosi: MyString
+  inibitore: MyString
+  unitabetesda: MyString
+  fattoreresiduo: MyString
+  accessovascolare: MyString

@@ -1,0 +1,61 @@
+<%= form_for(@patient) do |f| %>
+  <% if @patient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
+
+      <ul>
+      <% @patient.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :idpaz %><br />
+    <%= f.number_field :idpaz %>
+  </div>
+  <div class="field">
+    <%= f.label :cognome %><br />
+    <%= f.text_field :cognome %>
+  </div>
+  <div class="field">
+    <%= f.label :nome %><br />
+    <%= f.text_field :nome %>
+  </div>
+  <div class="field">
+    <%= f.label :datanas %><br />
+    <%= f.date_select :datanas %>
+  </div>
+  <div class="field">
+    <%= f.label :gruppo %><br />
+    <%= f.text_field :gruppo %>
+  </div>
+  <div class="field">
+    <%= f.label :rh %><br />
+    <%= f.text_field :rh %>
+  </div>
+  <div class="field">
+    <%= f.label :diagnosi %><br />
+    <%= f.text_field :diagnosi %>
+  </div>
+  <div class="field">
+    <%= f.label :inibitore %><br />
+    <%= f.text_field :inibitore %>
+  </div>
+  <div class="field">
+    <%= f.label :unitabetesda %><br />
+    <%= f.text_field :unitabetesda %>
+  </div>
+  <div class="field">
+    <%= f.label :fattoreresiduo %><br />
+    <%= f.text_field :fattoreresiduo %>
+  </div>
+  <div class="field">
+    <%= f.label :accessovascolare %><br />
+    <%= f.text_field :accessovascolare %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
