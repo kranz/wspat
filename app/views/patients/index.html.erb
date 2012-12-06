@@ -2,17 +2,13 @@
 
 <table>
   <tr>
-    <th>Idpaz</th>
+    <th>Id_paz</th>
     <th>Cognome</th>
     <th>Nome</th>
-    <th>Datanas</th>
+    <th>Datanascita</th>
     <th>Gruppo</th>
     <th>Rh</th>
     <th>Diagnosi</th>
-    <th>Inibitore</th>
-    <th>Unitabetesda</th>
-    <th>Fattoreresiduo</th>
-    <th>Accessovascolare</th>
     <th></th>
     <th></th>
     <th></th>
@@ -23,14 +19,10 @@
     <td><%= patient.idpaz %></td>
     <td><%= patient.cognome %></td>
     <td><%= patient.nome %></td>
-    <td><%= patient.datanas %></td>
+    <td><%= patient.datanascita %></td>
     <td><%= patient.gruppo %></td>
     <td><%= patient.rh %></td>
     <td><%= patient.diagnosi %></td>
-    <td><%= patient.inibitore %></td>
-    <td><%= patient.unitabetesda %></td>
-    <td><%= patient.fattoreresiduo %></td>
-    <td><%= patient.accessovascolare %></td>
     <td><%= link_to 'Show', patient %></td>
     <td><%= link_to 'Edit', edit_patient_path(patient) %></td>
     <td><%= link_to 'Destroy', patient, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>

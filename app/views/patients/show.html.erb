@@ -16,8 +16,13 @@
 </p>
 
 <p>
-  <b>Datanas:</b>
-  <%= @patient.datanas %>
+  <b>Data nascita:</b>
+  <%= @patient.datanascita %>
+</p>
+
+<p>
+  <b>Sesso:</b>
+  <%= @patient.sesso %>
 </p>
 
 <p>
@@ -37,24 +42,28 @@
 
 <p>
   <b>Inibitore:</b>
-  <%= @patient.inibitore %>
+  <%= @patient.inibitore8 %>
 </p>
 
 <p>
   <b>Unitabetesda:</b>
-  <%= @patient.unitabetesda %>
+  <%= @patient.unitab8 %>
 </p>
 
 <p>
-  <b>Fattoreresiduo:</b>
-  <%= @patient.fattoreresiduo %>
+  <b>LivFattCar:</b>
+  <%= @patient.livfattcar %>
 </p>
 
 <p>
-  <b>Accessovascolare:</b>
-  <%= @patient.accessovascolare %>
+  <b>Accesso vascolare:</b>
+  <%= @patient.accven %>
 </p>
 
+<p>
+  <b>Tipo Accesso vascolare:</b>
+  <%= @patient.accventipo %>
+</p>
 
 <%= link_to 'Edit', edit_patient_path(@patient) %> |
 <%= link_to 'Back', patients_path %>

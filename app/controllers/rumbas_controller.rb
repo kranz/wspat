@@ -2,6 +2,113 @@
 class RumbasController < ApplicationController
   include WashOut::SOAP
 
+  soap_action "get_elenco_pazienti",
+             :return => [ {:cognome => :string, 
+                           :nome => :string, 
+                           :id_paz => :string}]  
+  def get_elenco_pazienti
+    @pazienti = Patient.all
+    if @pazienti then
+      @arr = []
+      @pazienti.each do |paziente|
+          pat_data = {:cognome => paziente.cognome,
+                      :nome => paziente.nome,
+                      :id_paz => paziente.idpaz}
+          @arr.push(pat_data)
+      end
+      render :soap => @arr
+    else
+      raise SOAPError, "Elenco Pazienti vuoto"
+    end
+  end
+
+  soap_action "get_paziente",
+             :args   => { :cognome => :string, :nome => :string },
+             :return => { :paziente => {
+                            :cognome => :string, 
+                            :nome => :string,
+                            :id_paz => :string,
+                            :datanascita => :date,
+                            :gruppo => :string,
+                            :rh => :string,
+                            :diagnosi => :string, 
+                            :sesso => :string,
+                            :livfattcar => :string,
+                            :inibitore8 => :string,
+                            :unitab8 => :string,
+                            :preddavp1 => :string,
+                            :preddavp2 => :string,
+                            :preddavp3 => :string,
+                            :preddavp4 => :string,
+                            :preddavp5 => :string,
+                            :postddavp1 => :string,
+                            :postddavp2 => :string,
+                            :postddavp3 => :string,
+                            :postddavp4 => :string,
+                            :postddavp5 => :string,
+                            :accven => :string,
+                            :accventipo => :string,
+                            :rcof => :string,
+                            :fibrinogeno => :string,
+                            :concentrato => :string,    
+                            :fattII => :string,
+                            :fattVII => :string,    
+                            :fattVIII => :string,    
+                            :fattIX => :string,    
+                            :fattX => :string,    
+                            :fattXI => :string,    
+                            :fattXIII => :string
+                          }
+                        }  
+  def get_paziente
+    @co = params[:cognome]
+    @no = params[:nome]
+    @p = Patient.find_by_cognome_and_nome(params[:cognome], params[:nome])
+
+    if @p then
+       render :soap => {
+                  :paziente => {
+                  :cognome => @p.cognome,
+                  :nome => @p.nome,
+                  :id_paz => @p.idpaz.to_s,
+                  :gruppo => @p.gruppo,
+                  :rh => @p.rh,
+                  :diagnosi => @p.diagnosi, 
+                  :sesso => @p.sesso,
+                  :datanascita => @p.datanascita,
+                  :livfattcar => @p.livfattcar,
+                  :inibitore8 => @p.inibitore8,
+                  :unitab8 => @p.unitab8,
+                  :preddavp1 => @p.preddavp1,
+                  :preddavp2 => @p.preddavp2,
+                  :preddavp3 => @p.preddavp3,
+                  :preddavp4 => @p.preddavp4,
+                  :preddavp5 => @p.preddavp5,
+                  :postddavp1 => @p.postddavp1,
+                  :postddavp2 => @p.postddavp2,
+                  :postddavp3 => @p.postddavp3,
+                  :postddavp4 => @p.postddavp4,
+                  :postddavp5 => @p.postddavp5,
+                  :accven => @p.accven,
+                  :accventipo => @p.accventipo,
+                  :rcof => @p.rcof,
+                  :fibrinogeno => @p.fibrinogeno,
+                  :concentrato => @p.concentrato,    
+                  :fattII => @p.fattII,
+                  :fattVII => @p.fattVII,    
+                  :fattVIII => @p.fattVIII,    
+                  :fattIX => @p.fattIX,    
+                  :fattX => @p.fattX,    
+                  :fattXI => @p.fattXI,    
+                  :fattXIII => @p.fattXIII
+              }
+           }
+    else
+      raise SOAPError, "Paziente non trovato"
+    end
+  end
+
+
   # Simple case
   soap_action "integer_to_string",
               :args   => :integer,
@@ -15,25 +122,16 @@ class RumbasController < ApplicationController
               :return => :string
   def se_ti_dico
     case params[:value]
-    when "vaffanculo"  
-      tirispondo = "vacci tu che sei il mio culo"
+    when "governo ladro"  
+      tirispondo = "poffarbacco, non lo sapevo!"
     when "arotestabanse"
       tirispondo = "eh?"
     when "puppa"
       tirispondo = "uno a zero"
     else
-      tirispondo = "mavaffanculooooooooo"
+      tirispondo = "ma va a giocare con i puffi..."
     end
     render :soap => tirispondo
-  end
-
-  soap_action "get_paziente",
-             :args   => :string,
-             :return => :string  
-  def get_paziente
-    p = Patient.find_by_cognome_and_nome(params[:cognome], params[:nome])
-    resp = "Diagnosi=" + p.diagnosi + ", Inibitore=" + p.inibitore
-    render :soap => resp
   end
 
   soap_action "concat",

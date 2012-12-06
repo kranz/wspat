@@ -1,67 +1,6 @@
 class PatientsController < ApplicationController
-  include WashOut::SOAP
   # GET /patients
   # GET /patients.json
-
-  soap_action "get_elenco_pazienti",
-             :return => [ {:cognome => :string, 
-                           :nome => :string, 
-                           :idpaz => :string}]  
-  def get_elenco_pazienti
-    @pazienti = Patient.all
-    if @pazienti then
-      @arr = []
-      @pazienti.each do |paziente|
-          pat_data = {:cognome => paziente.cognome,
-                      :nome => paziente.nome,
-                      :idpaz => paziente.idpaz}
-          @arr.push(pat_data)
-      end
-      render :soap => @arr
-    else
-      raise SOAPError, "Elenco Pazienti vuoto"
-    end
-  end
-
-  soap_action "get_paziente",
-             :args   => { :cognome => :string, :nome => :string },
-             :return => { :paziente => {
-                            :cognome => :string, 
-                            :nome => :string,
-                            :idpaz => :string,
-                            :datanas => :date,
-                            :gruppo => :string,
-                            :rh => :string,
-                            :diagnosi => :string, 
-                            :inibitore => :string,
-                            :unitabetesda => :string,
-                            :fattoreresiduo => :string,
-                            :accessovascolare => :string
-                          }
-                        }  
-
-  def get_paziente
-    @p = Patient.find_by_cognome_and_nome(params[:cognome], params[:nome])
-    if @p then
-       render :soap => {
-                  :paziente => {
-                  :cognome => @p.cognome,
-                  :nome => @p.nome,
-                  :idpaz => @p.idpaz.to_s,
-                  :datanas => @p.datanas,
-                  :gruppo => @p.gruppo,
-                  :rh => @p.rh,
-                  :diagnosi => @p.diagnosi, 
-                  :inibitore => @p.inibitore,
-                  :unitabetesda => @p.unitabetesda.to_s,
-                  :fattoreresiduo => @p.fattoreresiduo.to_s,
-                  :accessovascolare => @p.accessovascolare
-              }
-           }
-    else
-      raise SOAPError, "Paziente non trovato"
-    end
-  end
 
   def index
     @patients = Patient.all

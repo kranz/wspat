@@ -5,9 +5,14 @@ gem 'rails', '3.2.9'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'activerecord-jdbcsqlite3-adapter'
+gem 'activerecord-jdbcsqlite3-adapter', :platform => :jruby
+gem 'jruby-openssl', :platform => :jruby
+gem 'ruby-debug', :platform => :jruby
 
-gem 'jruby-openssl'
+gem 'sqlite3', :platform => :ruby
+gem 'debugger', :platform => :ruby
+
+
 gem 'json'
 
 # Gems used only for assets and not required

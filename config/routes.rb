@@ -1,7 +1,7 @@
 Wspat::Application.routes.draw do
   resources :patients
   wash_out :rumbas
-  wash_out :patients
+ # wash_out :patients
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
