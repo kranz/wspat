@@ -51,13 +51,13 @@ class RumbasController < ApplicationController
                             :rcof => :string,
                             :fibrinogeno => :string,
                             :concentrato => :string,    
-                            :fattII => :string,
-                            :fattVII => :string,    
-                            :fattVIII => :string,    
-                            :fattIX => :string,    
-                            :fattX => :string,    
-                            :fattXI => :string,    
-                            :fattXIII => :string
+                            :fatt_ii => :string,
+                            :fatt_vii => :string,    
+                            :fatt_viii => :string,    
+                            :fatt_ix => :string,    
+                            :fatt_x => :string,    
+                            :fatt_xi => :string,    
+                            :fatt_xiii => :string
                           }
                         }  
   def get_paziente
@@ -94,13 +94,13 @@ class RumbasController < ApplicationController
                   :rcof => @p.rcof,
                   :fibrinogeno => @p.fibrinogeno,
                   :concentrato => @p.concentrato,    
-                  :fattII => @p.fattII,
-                  :fattVII => @p.fattVII,    
-                  :fattVIII => @p.fattVIII,    
-                  :fattIX => @p.fattIX,    
-                  :fattX => @p.fattX,    
-                  :fattXI => @p.fattXI,    
-                  :fattXIII => @p.fattXIII
+                  :fatt_ii => @p.fattII,
+                  :fatt_vii => @p.fattVII,    
+                  :fatt_viii => @p.fattVIII,    
+                  :fatt_ix => @p.fattIX,    
+                  :fatt_x => @p.fattX,    
+                  :fatt_xi => @p.fattXI,    
+                  :fatt_xiii => @p.fattXIII
               }
            }
     else
