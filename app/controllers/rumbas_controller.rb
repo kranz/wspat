@@ -3,20 +3,23 @@ class RumbasController < ApplicationController
   include WashOut::SOAP
 
   soap_action "get_elenco_pazienti",
-             :return => [ {:cognome => :string, 
+             :return =>  { :riga_elenco => [{:cognome => :string, 
                            :nome => :string, 
-                           :id_paz => :string}]  
+                           :id_paz => :string}] }
   def get_elenco_pazienti
+    elenco = {}
     @pazienti = Patient.all
     if @pazienti then
       @arr = []
       @pazienti.each do |paziente|
           pat_data = {:cognome => paziente.cognome,
                       :nome => paziente.nome,
-                      :id_paz => paziente.idpaz}
+                      :id_paz => paziente.idpaz }
           @arr.push(pat_data)
       end
-      render :soap => @arr
+      elenco[:riga_elenco] = @arr
+      render :soap => elenco
+#     render :soap => @arr
     else
       raise SOAPError, "Elenco Pazienti vuoto"
     end
