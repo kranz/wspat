@@ -26,7 +26,7 @@ class RumbasController < ApplicationController
   end
 
   soap_action "get_paziente",
-             :args   => { :cognome => :string, :nome => :string },
+             :args   => { :idpaz => :string },
              :return => { :paziente => {
                             :cognome => :string, 
                             :nome => :string,
@@ -66,7 +66,7 @@ class RumbasController < ApplicationController
   def get_paziente
     @co = params[:cognome]
     @no = params[:nome]
-    @p = Patient.find_by_cognome_and_nome(params[:cognome], params[:nome])
+    @p = Patient.find_by_idpaz(params[:idpaz])
 
     if @p then
        render :soap => {
